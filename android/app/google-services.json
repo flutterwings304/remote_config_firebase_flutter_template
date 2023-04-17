@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "231669284581",
+    "project_id": "remote-config-template",
+    "storage_bucket": "remote-config-template.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231669284581:android:9ba274450fd3a8e63ade0c",
+        "android_client_info": {
+          "package_name": "com.flutterwings.remote_config_firebase_flutter_template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231669284581-98u8rrb4910h9kd83stffu5cm052udko.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF2cJon5H5eWQ8EbC_LjnrDLXzJw7p6Z4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231669284581-98u8rrb4910h9kd83stffu5cm052udko.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "231669284581-d05q1rc21i0a97tlh2dnosuppc76f3tu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterwings.remoteConfigFirebaseFlutterTemplate"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
