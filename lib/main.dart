@@ -115,16 +115,47 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          RemoteConfig.instance.then((value) {
-            value.fetch();
-            value.getString("brand_name");
-        
-          });
-          print("myName");
+          RemoteConfig remoteConfig = await RemoteConfig.instance;
+          try {
+            await remoteConfig.setConfigSettings(RemoteConfigSettings());
+            	
+  final Map<String, dynamic> defaults =<String, dynamic>{
+    'new_color_enabled': false
+  };
+  await remoteConfig.setDefaults(defaults);
+            RemoteConfigSettings settings = RemoteConfigSettings();
+            
+remoteConfig.setConfigSettings(RemoteConfigSettings(
+              minimumFetchIntervalMillis: 21600000,
+              fetchTimeoutMillis: 30000,
+            ));
+            //     fetchTimeout: const Duration(seconds: 10),
+            //     minimumFetchInterval: Duration.zero));
+            // await remoteConfig.setDefaults({'appVersion': _currentBuildNumber});
+            // await remoteConfig.fetchAndActivate();
+            // RemoteConfigValue.asString();
+          } catch (exception) {
+            debugPrint(exception.toString());
+          }
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+   Future<void> _fetchRemoteConfig() async {
+      try {
+        await remoteConfig.fetch(expiration: const Duration(minutes: 1));
+        await remoteConfig.activateFetched();
+  
+        print('Last fetch status: ' + _remoteConfig.lastFetchStatus.toString());
+        print('Last fetch time: ' + _remoteConfig.lastFetchTime.toString());
+        print('New color enabled?: ' + _remoteConfig.getBool('new_color_enabled').toString());
+  
+        setState(() {
+          _color = _remoteConfig.getBool('new_color_enabled') ? Colors.teal : Colors.blue;
+        });
+      } catch (e) {
+        print('Error: ${e.toString()}');
+      }
 }
